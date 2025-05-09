@@ -1,0 +1,6 @@
+streamlit
+langchain
+groq
+python-dotenv
+langchain-groq
+reportlab==3.6.12
