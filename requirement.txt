@@ -4,3 +4,7 @@ groq
 python-dotenv
 langchain-groq
 reportlab==3.6.12
+faiss-cpu
+PyMuPDF
+langchain-community
+sentence-transformers
