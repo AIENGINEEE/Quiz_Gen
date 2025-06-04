@@ -46,6 +46,20 @@ def get_pdf_download_link(quiz_data, topic, difficulty, language, user_answers=N
         textColor=colors.green,
         fontName='Helvetica-Bold'
     )
+    hint_style = ParagraphStyle(
+        'Hint',
+        parent=styles['Normal'],
+        fontSize=10,
+        textColor=colors.blue,
+        italic=True
+    )
+    explanation_style = ParagraphStyle(
+        'Explanation',
+        parent=styles['Normal'],
+        fontSize=10,
+        textColor=colors.grey,
+        italic=True
+    )
     
     # Content elements
     elements = []
@@ -86,6 +100,17 @@ def get_pdf_download_link(quiz_data, topic, difficulty, language, user_answers=N
         if show_answers and q['answer']:
             correct_text = q['options'].get(q['answer'], 'Answer not available')
             elements.append(Paragraph(f"Correct Answer: {q['answer']}) {correct_text}", answer_style))
+        
+        else:
+            elements.append(Paragraph("Correct Answer: [Hidden]", answer_style))
+        # Hint
+        if 'hint' in q:
+            elements.append(Paragraph(f"Hint: {q['hint']}", hint_style))
+        # Explanation
+        if 'explanation' in q:
+            elements.append(Paragraph(f"Explanation: {q['explanation']}", explanation_style))
+        # Add space after each question
+
         
         elements.append(Spacer(1, 0.15*inch))
     
